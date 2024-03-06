@@ -23,5 +23,33 @@ class MyFirstDuskTest extends DuskTestCase
                 ->assertPathIs('/calc')
                 ->assertSee('4');
         });
+
+        $this->browse(function ($browser) {
+            $browser->visit('/')
+                ->type('a', 10)
+                ->type('b', 2)
+                ->select('action', '/')
+                ->press('Execute')
+                ->assertPathIs('/calc')
+                ->assertSee('5');
+        });
+        $this->browse(function ($browser) {
+            $browser->visit('/')
+                ->type('a', 10)
+                ->type('b', 2)
+                ->select('action', '-')
+                ->press('Execute')
+                ->assertPathIs('/calc')
+                ->assertSee('8');
+        });
+        $this->browse(function ($browser) {
+            $browser->visit('/')
+                ->type('a', 10)
+                ->type('b', 2)
+                ->select('action', '*')
+                ->press('Execute')
+                ->assertPathIs('/calc')
+                ->assertSee('20');
+        });
     }
 }
